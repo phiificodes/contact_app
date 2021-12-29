@@ -1,6 +1,8 @@
 // ignore: file_names
+
 import 'package:contact_app/contails_details.dart';
 import 'package:flutter/material.dart';
+import 'package:contact_app/contact_item_list.dart';
 
 class ContactList extends StatefulWidget {
   const ContactList({Key? key}) : super(key: key);
@@ -10,6 +12,7 @@ class ContactList extends StatefulWidget {
 }
 
 class _ContactListState extends State<ContactList> {
+  List contactItemList = contact_item_list;
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -46,18 +49,20 @@ class _ContactListState extends State<ContactList> {
               return GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ContactDetails()));
+                      builder: (context) =>
+                          ContactDetails(contactitem: contactItemList[index])));
                 },
-                child: const ListTile(
+                child: ListTile(
                   leading: CircleAvatar(
-                      backgroundImage: AssetImage("images/adina.jpeg"),
+                      backgroundImage:
+                          AssetImage("${contactItemList[index]["image"]}"),
                       radius: 26),
                   title: Text(
-                    "Adina Thembi",
-                    style: TextStyle(fontWeight: FontWeight.w500),
+                    '${contactItemList[index]["first_name"]} ${contactItemList[index]["last_name"]}',
+                    style: const TextStyle(fontWeight: FontWeight.w500),
                   ),
-                  subtitle: Text("+233 26 567 990"),
-                  trailing: Icon(Icons.more_horiz_rounded),
+                  subtitle: Text("${contactItemList[index]["mobile"]}"),
+                  trailing: const Icon(Icons.more_horiz_rounded),
                 ),
               );
             },
@@ -67,7 +72,7 @@ class _ContactListState extends State<ContactList> {
                   endIndent: 18,
                   color: Colors.grey,
                 ),
-            itemCount: 3),
+            itemCount: contactItemList.length - 2),
         Container(
           height: 5,
         ),
@@ -87,22 +92,30 @@ class _ContactListState extends State<ContactList> {
             primary: false,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ContactDetails()));
-                  },
-                  child: const ListTile(
-                    leading: CircleAvatar(
-                        backgroundImage: AssetImage("images/img1.jpeg"),
-                        radius: 26),
-                    title: Text(
-                      "Adina Thembi",
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    subtitle: Text("+233 26 567 990"),
-                    trailing: Icon(Icons.more_horiz_rounded),
-                  ));
+              if (contactItemList[index]["first_name"]
+                  .toString()
+                  .startsWith("A")) {
+                return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ContactDetails(
+                              contactitem: contactItemList[index])));
+                    },
+                    child: ListTile(
+                      leading: CircleAvatar(
+                          backgroundImage:
+                              AssetImage("${contactItemList[index]["image"]}"),
+                          radius: 26),
+                      title: Text(
+                        "${contactItemList[index]["first_name"]} ${contactItemList[index]["last_name"]}",
+                        style: const TextStyle(fontWeight: FontWeight.w500),
+                      ),
+                      subtitle: Text("${contactItemList[index]["mobile"]}"),
+                      trailing: const Icon(Icons.more_horiz_rounded),
+                    ));
+              } else {
+                return const Text("Error");
+              }
             },
             separatorBuilder: (context, index) => const Divider(
                   thickness: 0.8,
@@ -110,7 +123,7 @@ class _ContactListState extends State<ContactList> {
                   endIndent: 18,
                   color: Colors.grey,
                 ),
-            itemCount: 2),
+            itemCount: contactItemList.length),
         Container(
           margin: const EdgeInsets.only(left: 18, right: 18),
           child: Row(
@@ -121,34 +134,35 @@ class _ContactListState extends State<ContactList> {
             ],
           ),
         ),
-        ListView.separated(
-            primary: false,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ContactDetails()));
-                  },
-                  child: const ListTile(
-                    leading: CircleAvatar(
-                        backgroundImage: AssetImage("images/img2.jpeg"),
-                        radius: 26),
-                    title: Text(
-                      "Adina Thembi",
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    subtitle: Text("+233 26 567 990"),
-                    trailing: Icon(Icons.more_horiz_rounded),
-                  ));
-            },
-            separatorBuilder: (context, index) => const Divider(
-                  thickness: 0.8,
-                  indent: 18,
-                  endIndent: 18,
-                  color: Colors.grey,
-                ),
-            itemCount: 4),
+        // ListView.separated(
+        //     primary: false,
+        //     shrinkWrap: true,
+        //     itemBuilder: (context, index) {
+        //       return GestureDetector(
+        //           onTap: () {
+        //             Navigator.of(context).push(MaterialPageRoute(
+        //                 builder: (context) => ContactDetails(
+        //                     contactitem: contactItemList[index])));
+        //           },
+        //           child: const ListTile(
+        //             leading: CircleAvatar(
+        //                 backgroundImage: AssetImage("images/img2.jpeg"),
+        //                 radius: 26),
+        //             title: Text(
+        //               "Adina Thembi",
+        //               style: TextStyle(fontWeight: FontWeight.w500),
+        //             ),
+        //             subtitle: Text("+233 26 567 990"),
+        //             trailing: Icon(Icons.more_horiz_rounded),
+        //           ));
+        //     },
+        //     separatorBuilder: (context, index) => const Divider(
+        //           thickness: 0.8,
+        //           indent: 18,
+        //           endIndent: 18,
+        //           color: Colors.grey,
+        //         ),
+        //     itemCount: 4),
       ],
     );
   }
