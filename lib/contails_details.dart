@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
 class ContactDetails extends StatefulWidget {
-  const ContactDetails({Key? key}) : super(key: key);
+  Map contactitem;
+  ContactDetails({Key? key, required this.contactitem}) : super(key: key);
 
   @override
   _ContactDetailsState createState() => _ContactDetailsState();
@@ -35,30 +36,116 @@ class _ContactDetailsState extends State<ContactDetails> {
         ],
       ),
       body: Container(
-        // color: Colors.blue[200],
         child: ListView(children: [
           Container(
             width: double.infinity,
             height: 250,
-            decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10)),
-                color: Colors.white),
+            decoration: const BoxDecoration(color: Colors.white38),
             child: Column(
-              children: const [
+              children: [
                 Padding(
-                  padding: EdgeInsets.all(15.0),
+                  padding: EdgeInsets.all(5.0),
                   child: CircleAvatar(
-                    backgroundImage: AssetImage("images/adina.jpeg"),
-                    radius: 70,
+                    backgroundImage:
+                        AssetImage("${widget.contactitem["image"]}"),
+                    radius: 50,
                   ),
                 ),
-                Text("Adina Thembi",
+                Text(
+                    "${widget.contactitem["first_name"]} ${widget.contactitem["last_name"]}",
                     style: TextStyle(
-                      fontSize: 25,
+                      fontSize: 30,
                     )),
-                Text("Accra, Ghana")
+                Text("${widget.contactitem["location"]}, Ghana"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      margin: EdgeInsets.only(top: 10, bottom: 10),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 8.0, right: 8.0, bottom: 5.0, top: 5.0),
+                        child: Column(
+                          children: [
+                            Icon(
+                              CupertinoIcons.chat_bubble_fill,
+                              color: Colors.blue[700],
+                            ),
+                            Text(
+                              "message",
+                              style: (TextStyle(color: Colors.blue[700])),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      margin: EdgeInsets.only(top: 10, bottom: 10),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 25.0, right: 25.0, bottom: 5.0, top: 5.0),
+                        child: Column(
+                          children: [
+                            Icon(
+                              CupertinoIcons.phone_fill,
+                              color: Colors.blue[700],
+                            ),
+                            Text(
+                              "call",
+                              style: (TextStyle(color: Colors.blue[700])),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      margin: EdgeInsets.only(top: 10, bottom: 10),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 20.0, right: 20.0, bottom: 5.0, top: 5.0),
+                        child: Column(
+                          children: [
+                            Icon(
+                              CupertinoIcons.videocam_fill,
+                              color: Colors.blue[700],
+                            ),
+                            Text(
+                              "video",
+                              style: (TextStyle(color: Colors.blue[700])),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      margin: EdgeInsets.only(top: 10, bottom: 10),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 25.0, right: 25.0, bottom: 5.0, top: 5.0),
+                        child: Column(
+                          children: const [
+                            Icon(
+                              CupertinoIcons.mail_solid,
+                              color: Colors.grey,
+                            ),
+                            Text(
+                              "mail",
+                              style: (TextStyle(color: Colors.grey)),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
@@ -70,7 +157,7 @@ class _ContactDetailsState extends State<ContactDetails> {
               children: [
                 ListTile(
                   title: Text("Mobile", style: TextStyle(fontSize: 18)),
-                  subtitle: Text("+233 25 284 222"),
+                  subtitle: Text("${widget.contactitem["mobile"]}"),
                   trailing: CircleAvatar(
                     radius: 18,
                     backgroundColor: Colors.white,
@@ -85,7 +172,7 @@ class _ContactDetailsState extends State<ContactDetails> {
                     "Email",
                     style: TextStyle(fontSize: 18),
                   ),
-                  subtitle: Text("yoofiduncan@gmail.com"),
+                  subtitle: Text("${widget.contactitem["email"]}"),
                   trailing: CircleAvatar(
                     radius: 18,
                     backgroundColor: Colors.white,
@@ -97,7 +184,7 @@ class _ContactDetailsState extends State<ContactDetails> {
                 ),
                 ListTile(
                   title: Text("Group", style: TextStyle(fontSize: 18)),
-                  subtitle: Text("GTL"),
+                  subtitle: Text("${widget.contactitem["group"]}"),
                 ),
                 Container(
                     width: double.infinity,
@@ -142,9 +229,9 @@ class _ContactDetailsState extends State<ContactDetails> {
                       ),
                     )),
                 ListTile(
-                  title: Text("More Options"),
+                  title: Text("Share"),
                   trailing: Icon(
-                    Icons.more_horiz_rounded,
+                    CupertinoIcons.share,
                     color: Colors.black54,
                     size: 27,
                   ),
