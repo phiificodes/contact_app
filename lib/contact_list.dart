@@ -92,30 +92,24 @@ class _ContactListState extends State<ContactList> {
             primary: false,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              if (contactItemList[index]["first_name"]
-                  .toString()
-                  .startsWith("A")) {
-                return GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ContactDetails(
-                              contactitem: contactItemList[index])));
-                    },
-                    child: ListTile(
-                      leading: CircleAvatar(
-                          backgroundImage:
-                              AssetImage("${contactItemList[index]["image"]}"),
-                          radius: 26),
-                      title: Text(
-                        "${contactItemList[index]["first_name"]} ${contactItemList[index]["last_name"]}",
-                        style: const TextStyle(fontWeight: FontWeight.w500),
-                      ),
-                      subtitle: Text("${contactItemList[index]["mobile"]}"),
-                      trailing: const Icon(Icons.more_horiz_rounded),
-                    ));
-              } else {
-                return const Text("Error");
-              }
+              return GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ContactDetails(
+                          contactitem: contactItemList[index])));
+                },
+                child: ListTile(
+                  leading: CircleAvatar(
+                      backgroundImage:
+                          AssetImage("${contactItemList[index]["image"]}"),
+                      radius: 26),
+                  title: Text(
+                    "${contactItemList[index]["first_name"]} ${contactItemList[index]["last_name"]}",
+                    style: const TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  subtitle: Text("${contactItemList[index]["mobile"]}"),
+                  trailing: const Icon(Icons.more_horiz_rounded),
+                ));
             },
             separatorBuilder: (context, index) => const Divider(
                   thickness: 0.8,
@@ -123,7 +117,7 @@ class _ContactListState extends State<ContactList> {
                   endIndent: 18,
                   color: Colors.grey,
                 ),
-            itemCount: contactItemList.length),
+            itemCount: contactItemList.where((element) => element['first_name'].toString().startsWith('A')).length),
         Container(
           margin: const EdgeInsets.only(left: 18, right: 18),
           child: Row(
