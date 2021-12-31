@@ -11,15 +11,6 @@ List contact_item_list = [
     'location': "Kumasi",
   },
   {
-    'first_name': 'Ksace',
-    'last_name': 'Rowe',
-    'image': 'images/sark.jpeg',
-    'group': "24",
-    'email': 'isacerowe@gamil.com',
-    'mobile': '+233 24 783 3330',
-    'location': "Kumasi",
-  },
-  {
     'first_name': 'Smith',
     'last_name': 'Acturey',
     'image': 'images/img3.jpeg',
