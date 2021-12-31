@@ -34,5 +34,32 @@ List contact_item_list = [
     'email': 'abish@gamil.com',
     'mobile': "+233 23 540 7432",
     'location': "Accra",
-  }
+  },
+  {
+    'first_name': 'Chartty',
+    'last_name': 'Love',
+    'image': 'images/kwesi.jpeg',
+    'group': "Rehoboth",
+    'email': 'chartty@gamil.com',
+    'mobile': '+233 24 110 1340',
+    'location': "Dansoman",
+  },
+  {
+    'first_name': 'Bernny',
+    'last_name': 'Hinn',
+    'image': 'images/joe.jpeg',
+    'group': "Aposa",
+    'email': 'hinnbeny@gamil.com',
+    'mobile': "+233 20 440 2234",
+    'location': "Kasoa",
+  },
+  {
+    'first_name': 'Cira',
+    'last_name': 'Wordpowse',
+    'image': 'images/img2.jpeg',
+    'group': "Apass",
+    'email': 'derciraa@gamil.com',
+    'mobile': "+233 27 080 2381",
+    'location': "Kasoa",
+  },
 ];
