@@ -1,6 +1,17 @@
+List alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
 List contact_item_list = [
   {
     'first_name': 'Isace',
+    'last_name': 'Rowe',
+    'image': 'images/sark.jpeg',
+    'group': "24",
+    'email': 'isacerowe@gamil.com',
+    'mobile': '+233 24 783 3330',
+    'location': "Kumasi",
+  },
+  {
+    'first_name': 'Ksace',
     'last_name': 'Rowe',
     'image': 'images/sark.jpeg',
     'group': "24",

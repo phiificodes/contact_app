@@ -1,5 +1,6 @@
 // ignore: file_names
 
+import 'package:contact_app/contact_section.dart';
 import 'package:contact_app/contails_details.dart';
 import 'package:flutter/material.dart';
 import 'package:contact_app/contact_item_list.dart';
@@ -12,7 +13,7 @@ class ContactList extends StatefulWidget {
 }
 
 class _ContactListState extends State<ContactList> {
-  List contactItemList = contact_item_list;
+  List contactItemList = contact_item_list;  
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -83,51 +84,63 @@ class _ContactListState extends State<ContactList> {
             children: const [
               Text("Contacts",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
-              Text("A",
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800))
+              // Text("A",
+              //     style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800))
             ],
           ),
         ),
-        ListView.separated(
-            primary: false,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ContactDetails(
-                          contactitem: contactItemList[index])));
-                },
-                child: ListTile(
-                  leading: CircleAvatar(
-                      backgroundImage:
-                          AssetImage("${contactItemList[index]["image"]}"),
-                      radius: 26),
-                  title: Text(
-                    "${contactItemList[index]["first_name"]} ${contactItemList[index]["last_name"]}",
-                    style: const TextStyle(fontWeight: FontWeight.w500),
-                  ),
-                  subtitle: Text("${contactItemList[index]["mobile"]}"),
-                  trailing: const Icon(Icons.more_horiz_rounded),
-                ));
-            },
-            separatorBuilder: (context, index) => const Divider(
-                  thickness: 0.8,
-                  indent: 18,
-                  endIndent: 18,
-                  color: Colors.grey,
-                ),
-            itemCount: contactItemList.where((element) => element['first_name'].toString().startsWith('A')).length),
-        Container(
-          margin: const EdgeInsets.only(left: 18, right: 18),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: const [
-              Text("B",
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800)),
-            ],
-          ),
-        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: ListView.builder(
+            itemCount: alphabets.length,
+            itemBuilder: (context, i){
+            List newList = contact_item_list.where((element){
+              return element['first_name'].toString().startsWith(alphabets[i]);
+            }).toList();
+            return newList.isNotEmpty ? ContactSection(alphabet: alphabets[i], data: newList):Container();
+          }),
+        )
+        // ListView.separated(
+        //     primary: false,
+        //     shrinkWrap: true,
+        //     itemBuilder: (context, index) {
+        //       return GestureDetector(
+        //         onTap: () {
+        //           Navigator.of(context).push(MaterialPageRoute(
+        //               builder: (context) => ContactDetails(
+        //                   contactitem: contactItemList[index])));
+        //         },
+        //         child: ListTile(
+        //           leading: CircleAvatar(
+        //               backgroundImage:
+        //                   AssetImage("${contactItemList[index]["image"]}"),
+        //               radius: 26),
+        //           title: Text(
+        //             "${contactItemList[index]["first_name"]} ${contactItemList[index]["last_name"]}",
+        //             style: const TextStyle(fontWeight: FontWeight.w500),
+        //           ),
+        //           subtitle: Text("${contactItemList[index]["mobile"]}"),
+        //           trailing: const Icon(Icons.more_horiz_rounded),
+        //         )
+        //         );
+        //     },
+        //     separatorBuilder: (context, index) => const Divider(
+        //           thickness: 0.8,
+        //           indent: 18,
+        //           endIndent: 18,
+        //           color: Colors.grey,
+        //         ),
+        //     itemCount: contactItemList.length),
+        // Container(
+        //   margin: const EdgeInsets.only(left: 18, right: 18),
+        //   child: Row(
+        //     mainAxisAlignment: MainAxisAlignment.end,
+        //     children: const [
+        //       Text("B",
+        //           style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800)),
+        //     ],
+        //   ),
+        // ),
         // ListView.separated(
         //     primary: false,
         //     shrinkWrap: true,
