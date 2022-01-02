@@ -1,4 +1,31 @@
-List alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+List alphabets = [
+  'A',
+  'B',
+  'C',
+  'D',
+  'E',
+  'F',
+  'G',
+  'H',
+  'I',
+  'J',
+  'K',
+  'L',
+  'M',
+  'N',
+  'O',
+  'P',
+  'Q',
+  'R',
+  'S',
+  'T',
+  'U',
+  'V',
+  'W',
+  'X',
+  'Y',
+  'Z'
+];
 
 List contact_item_list = [
   {
@@ -64,4 +91,13 @@ List contact_item_list = [
     'mobile': "+233 27 080 2381",
     'location': "Kasoa",
   },
+  {
+    'first_name': 'Zeru',
+    'last_name': 'Babel',
+    'image': 'images/adina.jpeg',
+    'group': "Apass",
+    'email': 'zerubabel@gamil.com',
+    'mobile': '+233 24 550 3289',
+    'location': "East Legon",
+  }
 ];

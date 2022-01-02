@@ -4,6 +4,7 @@ import 'package:contact_app/contact_section.dart';
 import 'package:contact_app/contails_details.dart';
 import 'package:flutter/material.dart';
 import 'package:contact_app/contact_item_list.dart';
+import 'dart:math';
 
 class ContactList extends StatefulWidget {
   const ContactList({Key? key}) : super(key: key);
@@ -13,24 +14,7 @@ class ContactList extends StatefulWidget {
 }
 
 class _ContactListState extends State<ContactList> {
-<<<<<<< HEAD
   List contactItemList = contact_item_list;
-
-  List listOfAs = contact_item_list
-      .where((element) => element['first_name'].toString().startsWith('A'))
-      .toList();
-
-  List listOfBs = contact_item_list
-      .where((element) => element['first_name'].toString().startsWith('B'))
-      .toList();
-
-  List listOfCs = contact_item_list
-      .where((element) => element['first_name'].toString().startsWith('C'))
-      .toList();
-
-=======
-  List contactItemList = contact_item_list;  
->>>>>>> fcb16e66129f4d096eee04ffe2f225a39720365b
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -61,250 +45,59 @@ class _ContactListState extends State<ContactList> {
           ),
         ),
         ListView.separated(
-            primary: false,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          ContactDetails(contactitem: contactItemList[index])));
-                },
-                child: ListTile(
-                  leading: CircleAvatar(
-                      backgroundImage:
-                          AssetImage("${contactItemList[index]["image"]}"),
-                      radius: 26),
-                  title: Text(
-                    '${contactItemList[index]["first_name"]} ${contactItemList[index]["last_name"]}',
-                    style: const TextStyle(fontWeight: FontWeight.w500),
-                  ),
-                  subtitle: Text("${contactItemList[index]["mobile"]}"),
-                  trailing: const Icon(Icons.more_horiz_rounded),
+          primary: false,
+          shrinkWrap: true,
+          itemCount: 3,
+          itemBuilder: (context, index) {
+            var random = Random();
+            index = random.nextInt(contactItemList.length);
+            return GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        ContactDetails(contactitem: contactItemList[index])));
+              },
+              child: ListTile(
+                leading: CircleAvatar(
+                    backgroundImage:
+                        AssetImage("${contactItemList[index]["image"]}"),
+                    radius: 26),
+                title: Text(
+                  '${contactItemList[index]["first_name"]} ${contactItemList[index]["last_name"]}',
+                  style: const TextStyle(fontWeight: FontWeight.w500),
                 ),
-              );
-            },
-            separatorBuilder: (context, index) => const Divider(
-                  thickness: 0.8,
-                  indent: 18,
-                  endIndent: 18,
-                  color: Colors.grey,
-                ),
-            itemCount: contactItemList.length - 2),
+                subtitle: Text("${contactItemList[index]["mobile"]}"),
+                trailing: const Icon(Icons.more_horiz_rounded),
+              ),
+            );
+          },
+          separatorBuilder: (context, index) => const Divider(
+            thickness: 0.8,
+            indent: 18,
+            endIndent: 18,
+            color: Colors.grey,
+          ),
+        ),
         Container(
           height: 5,
-        ),
-        Container(
-          margin: const EdgeInsets.only(left: 18, right: 18),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text("Contacts",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
-<<<<<<< HEAD
-              Text("A",
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800))
-            ],
-          ),
-        ),
-        ListView.separated(
-            primary: false,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            ContactDetails(contactitem: listOfAs[index])));
-                  },
-                  child: ListTile(
-                    leading: CircleAvatar(
-                        backgroundImage:
-                            AssetImage("${listOfAs[index]["image"]}"),
-                        radius: 26),
-                    title: Text(
-                      "${listOfAs[index]["first_name"]} ${listOfAs[index]["last_name"]}",
-                      style: const TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    subtitle: Text("${listOfAs[index]["mobile"]}"),
-                    trailing: const Icon(Icons.more_horiz_rounded),
-                  ));
-            },
-            separatorBuilder: (context, index) => const Divider(
-                  thickness: 0.8,
-                  indent: 18,
-                  endIndent: 18,
-                  color: Colors.grey,
-                ),
-            itemCount: listOfAs.length),
-        Container(
-          margin: const EdgeInsets.only(left: 18, right: 18),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: const [
-              Text("B",
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800)),
-            ],
-          ),
-        ),
-        ListView.separated(
-            primary: false,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            ContactDetails(contactitem: listOfBs[index])));
-                  },
-                  child: ListTile(
-                    leading: CircleAvatar(
-                        backgroundImage:
-                            AssetImage("${listOfBs[index]["image"]}"),
-                        radius: 26),
-                    title: Text(
-                      "${listOfBs[index]["first_name"]} ${listOfBs[index]["last_name"]}",
-                      style: const TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    subtitle: Text("${listOfBs[index]["mobile"]}"),
-                    trailing: const Icon(Icons.more_horiz_rounded),
-                  ));
-            },
-            separatorBuilder: (context, index) => const Divider(
-                  thickness: 0.8,
-                  indent: 18,
-                  endIndent: 18,
-                  color: Colors.grey,
-                ),
-            itemCount: listOfBs.length),
-        Container(
-          margin: const EdgeInsets.only(left: 18, right: 18),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: const [
-              Text("C",
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800)),
-            ],
-          ),
-        ),
-        ListView.separated(
-            primary: false,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            ContactDetails(contactitem: listOfCs[index])));
-                  },
-                  child: ListTile(
-                    leading: CircleAvatar(
-                        backgroundImage:
-                            AssetImage("${listOfCs[index]["image"]}"),
-                        radius: 26),
-                    title: Text(
-                      "${listOfCs[index]["first_name"]} ${listOfCs[index]["last_name"]}",
-                      style: const TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    subtitle: Text("${listOfCs[index]["mobile"]}"),
-                    trailing: const Icon(Icons.more_horiz_rounded),
-                  ));
-            },
-            separatorBuilder: (context, index) => const Divider(
-                  thickness: 0.8,
-                  indent: 18,
-                  endIndent: 18,
-                  color: Colors.grey,
-                ),
-            itemCount: listOfCs.length)
-=======
-              // Text("A",
-              //     style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800))
-            ],
-          ),
         ),
         SizedBox(
           height: MediaQuery.of(context).size.height,
           child: ListView.builder(
-            itemCount: alphabets.length,
-            itemBuilder: (context, i){
-            List newList = contact_item_list.where((element){
-              return element['first_name'].toString().startsWith(alphabets[i]);
-            }).toList();
-            return newList.isNotEmpty ? ContactSection(alphabet: alphabets[i], data: newList):Container();
-          }),
+              primary: false,
+              itemCount: alphabets.length,
+              itemBuilder: (context, index) {
+                List newList = contactItemList.where((element) {
+                  debugPrint(index.toString());
+                  return element['first_name']
+                      .toString()
+                      .startsWith(alphabets[index]);
+                }).toList();
+                return newList.isNotEmpty
+                    ? ContactSection(alphabet: alphabets[index], data: newList)
+                    : Container();
+              }),
         )
-        // ListView.separated(
-        //     primary: false,
-        //     shrinkWrap: true,
-        //     itemBuilder: (context, index) {
-        //       return GestureDetector(
-        //         onTap: () {
-        //           Navigator.of(context).push(MaterialPageRoute(
-        //               builder: (context) => ContactDetails(
-        //                   contactitem: contactItemList[index])));
-        //         },
-        //         child: ListTile(
-        //           leading: CircleAvatar(
-        //               backgroundImage:
-        //                   AssetImage("${contactItemList[index]["image"]}"),
-        //               radius: 26),
-        //           title: Text(
-        //             "${contactItemList[index]["first_name"]} ${contactItemList[index]["last_name"]}",
-        //             style: const TextStyle(fontWeight: FontWeight.w500),
-        //           ),
-        //           subtitle: Text("${contactItemList[index]["mobile"]}"),
-        //           trailing: const Icon(Icons.more_horiz_rounded),
-        //         )
-        //         );
-        //     },
-        //     separatorBuilder: (context, index) => const Divider(
-        //           thickness: 0.8,
-        //           indent: 18,
-        //           endIndent: 18,
-        //           color: Colors.grey,
-        //         ),
-        //     itemCount: contactItemList.length),
-        // Container(
-        //   margin: const EdgeInsets.only(left: 18, right: 18),
-        //   child: Row(
-        //     mainAxisAlignment: MainAxisAlignment.end,
-        //     children: const [
-        //       Text("B",
-        //           style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800)),
-        //     ],
-        //   ),
-        // ),
-        // ListView.separated(
-        //     primary: false,
-        //     shrinkWrap: true,
-        //     itemBuilder: (context, index) {
-        //       return GestureDetector(
-        //           onTap: () {
-        //             Navigator.of(context).push(MaterialPageRoute(
-        //                 builder: (context) => ContactDetails(
-        //                     contactitem: contactItemList[index])));
-        //           },
-        //           child: const ListTile(
-        //             leading: CircleAvatar(
-        //                 backgroundImage: AssetImage("images/img2.jpeg"),
-        //                 radius: 26),
-        //             title: Text(
-        //               "Adina Thembi",
-        //               style: TextStyle(fontWeight: FontWeight.w500),
-        //             ),
-        //             subtitle: Text("+233 26 567 990"),
-        //             trailing: Icon(Icons.more_horiz_rounded),
-        //           ));
-        //     },
-        //     separatorBuilder: (context, index) => const Divider(
-        //           thickness: 0.8,
-        //           indent: 18,
-        //           endIndent: 18,
-        //           color: Colors.grey,
-        //         ),
-        //     itemCount: 4),
->>>>>>> fcb16e66129f4d096eee04ffe2f225a39720365b
       ],
     );
   }
