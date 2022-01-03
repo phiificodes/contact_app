@@ -19,46 +19,69 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 2,
-          centerTitle: false,
-          backgroundColor: Colors.white,
-          title: const Text("My Contacts",
-              style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black)),
-          actions: const [
-            Padding(
-                padding: EdgeInsets.only(right: 15),
-                child: CircleAvatar(
-                  radius: 23,
-                  backgroundImage: AssetImage("images/img3.jpeg"),
-                )),
-          ],
+      appBar: AppBar(
+        elevation: 2,
+        centerTitle: false,
+        backgroundColor: Colors.white,
+        title: const Text("My Contacts",
+            style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.w500,
+                color: Colors.black)),
+        actions: const [
+          Padding(
+              padding: EdgeInsets.only(right: 15),
+              child: CircleAvatar(
+                radius: 23,
+                backgroundImage: AssetImage("images/img3.jpeg"),
+              )),
+        ],
+      ),
+      body: const ContactList(),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return FormBuilder();
+                });
+          },
+          child: const Icon(Icons.add)),
+      bottomNavigationBar: BottomNavigationBar(elevation: 10, items: const [
+        BottomNavigationBarItem(
+          icon: Icon(
+            CupertinoIcons.star_fill,
+            color: Colors.blue,
+          ),
+          title: Text(
+            'Favorites',
+            style: TextStyle(color: Colors.blue),
+          ),
         ),
-        body: const ContactList(),
-        floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              showModalBottomSheet(
-                  context: context,
-                  builder: (context) {
-                    return FormBuilder();
-                  });
-            },
-            child: const Icon(Icons.add)),
-        bottomNavigationBar: SizedBox(
-          height: 60,
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                Icon(CupertinoIcons.home),
-                Icon(CupertinoIcons.chart_bar),
-                Icon(CupertinoIcons.settings),
-                Icon(Icons.more_vert_outlined)
-              ]),
-        )
-        // This trailing comma makes auto-formatting nicer for build methods.
-        );
+        BottomNavigationBarItem(
+          icon: Icon(
+            CupertinoIcons.clock_fill,
+            color: Colors.grey,
+          ),
+          title: Text('Recents', style: TextStyle(color: Colors.grey)),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            CupertinoIcons.profile_circled,
+            color: Colors.grey,
+          ),
+          title: Text('contacts', style: TextStyle(color: Colors.grey)),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.more_vert_outlined,
+            color: Colors.grey,
+          ),
+          title: Text('More', style: TextStyle(color: Colors.grey)),
+        ),
+      ]),
+
+      // This trailing comma makes auto-formatting nicer for build methods.
+    );
   }
 }

@@ -3,10 +3,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:contact_app/contact_edit.dart';
 
 class ContactDetails extends StatefulWidget {
-  Map contactitem;
-  ContactDetails({Key? key, required this.contactitem}) : super(key: key);
+  Map contactitemDetails;
+  ContactDetails({Key? key, required this.contactitemDetails})
+      : super(key: key);
 
   @override
   _ContactDetailsState createState() => _ContactDetailsState();
@@ -28,10 +30,13 @@ class _ContactDetailsState extends State<ContactDetails> {
                 fontSize: 20,
                 fontWeight: FontWeight.w700)),
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.more_vert_outlined),
-            color: Colors.black,
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      ContactEdit(contactitem: widget.contactitemDetails)));
+            },
+            child: Text("Edit", style: TextStyle(color: Colors.blue)),
           )
         ],
       ),
@@ -47,16 +52,16 @@ class _ContactDetailsState extends State<ContactDetails> {
                   padding: EdgeInsets.all(5.0),
                   child: CircleAvatar(
                     backgroundImage:
-                        AssetImage("${widget.contactitem["image"]}"),
+                        AssetImage("${widget.contactitemDetails["image"]}"),
                     radius: 50,
                   ),
                 ),
                 Text(
-                    "${widget.contactitem["first_name"]} ${widget.contactitem["last_name"]}",
+                    "${widget.contactitemDetails["first_name"]} ${widget.contactitemDetails["last_name"]}",
                     style: TextStyle(
                       fontSize: 30,
                     )),
-                Text("${widget.contactitem["location"]}, Ghana"),
+                Text("${widget.contactitemDetails["location"]}, Ghana"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -157,7 +162,7 @@ class _ContactDetailsState extends State<ContactDetails> {
               children: [
                 ListTile(
                   title: Text("Mobile", style: TextStyle(fontSize: 18)),
-                  subtitle: Text("${widget.contactitem["mobile"]}"),
+                  subtitle: Text("${widget.contactitemDetails["mobile"]}"),
                   trailing: CircleAvatar(
                     radius: 18,
                     backgroundColor: Colors.white,
@@ -172,7 +177,7 @@ class _ContactDetailsState extends State<ContactDetails> {
                     "Email",
                     style: TextStyle(fontSize: 18),
                   ),
-                  subtitle: Text("${widget.contactitem["email"]}"),
+                  subtitle: Text("${widget.contactitemDetails["email"]}"),
                   trailing: CircleAvatar(
                     radius: 18,
                     backgroundColor: Colors.white,
@@ -184,7 +189,7 @@ class _ContactDetailsState extends State<ContactDetails> {
                 ),
                 ListTile(
                   title: Text("Group", style: TextStyle(fontSize: 18)),
-                  subtitle: Text("${widget.contactitem["group"]}"),
+                  subtitle: Text("${widget.contactitemDetails["group"]}"),
                 ),
                 Container(
                     width: double.infinity,

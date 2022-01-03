@@ -39,8 +39,8 @@ class _ContactSectionState extends State<ContactSection> {
           return GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>
-                        ContactDetails(contactitem: contactItemList[index])));
+                    builder: (context) => ContactDetails(
+                        contactitemDetails: contactItemList[index])));
               },
               child: ListTile(
                 leading: CircleAvatar(
