@@ -88,7 +88,6 @@ class _ContactListState extends State<ContactList> {
               itemCount: alphabets.length,
               itemBuilder: (context, index) {
                 List newList = contactItemList.where((element) {
-                  debugPrint(index.toString());
                   return element['first_name']
                       .toString()
                       .startsWith(alphabets[index]);

@@ -38,15 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: const ContactList(),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            showModalBottomSheet(
-                context: context,
-                builder: (context) {
-                  return FormBuilder();
-                });
-          },
-          child: const Icon(Icons.add)),
+
       bottomNavigationBar: BottomNavigationBar(elevation: 10, items: const [
         BottomNavigationBarItem(
           icon: Icon(

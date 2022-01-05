@@ -36,7 +36,8 @@ class _ContactDetailsState extends State<ContactDetails> {
                   builder: (context) =>
                       ContactEdit(contactitem: widget.contactitemDetails)));
             },
-            child: Text("Edit", style: TextStyle(color: Colors.blue)),
+            child: Text("Edit",
+                style: TextStyle(color: Colors.blue, fontSize: 17)),
           )
         ],
       ),

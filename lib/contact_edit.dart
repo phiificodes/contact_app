@@ -13,6 +13,7 @@ class ContactEdit extends StatefulWidget {
 class _ContactEditState extends State<ContactEdit> {
   @override
   Widget build(BuildContext context) {
+    var textColor = Colors.grey;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -23,9 +24,9 @@ class _ContactEditState extends State<ContactEdit> {
         actions: [
           TextButton(
             onPressed: () {},
-            child: const Text(
+            child: Text(
               'Done',
-              style: TextStyle(color: Colors.blue, fontSize: 17),
+              style: TextStyle(color: textColor, fontSize: 17),
             ),
           )
         ],
@@ -62,6 +63,14 @@ class _ContactEditState extends State<ContactEdit> {
                 Container(
                   margin: EdgeInsets.only(left: 12),
                   child: TextFormField(
+                    onChanged: (value) {
+                      debugPrint(textColor.toString());
+                      setState(() {
+                        textColor = Colors.blue;
+                      });
+
+                      debugPrint(textColor.toString());
+                    },
                     decoration: const InputDecoration(
                       hintText: 'First Name',
                     ),
